@@ -1,0 +1,21 @@
+<div class="index-content">
+  <div class="new-post">
+    <%= form_with model:@post,local:true do |f| %>
+      <%= f.label:title %>
+      <%= f.text_field:title,placeholder:"菓子屋横丁",class:"form-control" %>
+      <%= f.label:image %>
+      <%= f.attachment_field:image,class:"form-control" %>
+      <%= f.submit "投稿",class:"btn btn-primary" %>
+    <% end %>
+  </div>
+  <div class="post-index">
+    <% if @posts.present? %>
+      <% @posts.each do |post| %>
+        <%= post.title %>
+        <%= post.image %>
+      <% end %>
+    <% else %>
+      <p>投稿はまだありません</p>
+    <% end %>
+  </div>
+</div>
