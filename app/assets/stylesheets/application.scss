@@ -13,9 +13,12 @@
  *= require_tree .
  *= require_self
  */
+ @import 'bootstrap';
  
+body {
+ font-family: "ヒラギノ丸ゴ ProN";
+}
  .top{
-   background-color:#f5f5f4;
    overflow: hidden;
  }
  .top-content{
@@ -60,7 +63,6 @@
 }
 .to-index{
     margin: 40px 0;
-    background-color:rgba(255,255,255,0.3);
     padding:20px;
 }
 .to-content{
@@ -75,8 +77,22 @@
 }
 
 .new-post{
-    width:48%;
+    width:28%;
+    padding:20px;
+}
+.post{
+    width:68%;
+    padding:20px;
 }
 .post-index{
-    width:48%;
+  display:flex;
+  flex-wrap:wrap;
+}
+.heading{
+  padding:10px;
+  background-color: rgba(217, 255, 204,0.3);
+  display:inline-block;
+}
+.card{
+    margin:10px 0 10px 10px;
 }

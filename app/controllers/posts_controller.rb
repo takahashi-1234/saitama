@@ -3,4 +3,19 @@ class PostsController < ApplicationController
     @post=Post.new
     @posts=Post.all
   end
+  def create
+    post=current_user.posts.new(post_params)
+    post.save
+    redirect_back(fallback_location:root_path)
+  end
+  def destroy
+    post=Post.find(params[:id])
+    post.destroy
+    redirect_back(fallback_location:root_path)
+  end
+  
+  private
+  def post_params
+    params.require(:post).permit(:title,:body,:image)
+  end
 end
