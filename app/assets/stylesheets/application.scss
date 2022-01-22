@@ -96,3 +96,14 @@ body {
 .card{
     margin:10px 0 10px 10px;
 }
+.card-text{
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.card-title{
+    border-bottom:solid 2px black;
+    font-weight:bold
+}
