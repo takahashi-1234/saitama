@@ -1,22 +1,38 @@
-<div class="card" style="width: 500px;">
-  <%= attachment_image_tag @post,:image,fallback:"noimage.png",size:'400x550',class:"bd-placeholder-img card-img-top w-100" %>
-  <div class="card-body">
-    <h5 class="card-title"><%= @post.title %></h5>
-    <p><%= @post.body %></p>
-    <% if @post.favorite_by(current_user) %>
-      <%= link_to post_favorites_path(@post.id),method: :delete do %>
-        <i class="fas fa-heart"></i>
+<div class="post-show">
+  <div class="card" style="width: 500px;">
+    <%= attachment_image_tag @post,:image,fallback:"noimage.png",size:'400x550',class:"bd-placeholder-img card-img-top w-100" %>
+    <div class="card-body">
+      <h5 class="card-title"><%= @post.title %></h5>
+      <p><%= @post.body %></p>
+      <% if @post.favorite_by(current_user) %>
+        <%= link_to post_favorites_path(@post.id),method: :delete do %>
+          <i class="fas fa-heart"></i>
+        <% end %>
+      <% else %>
+        <%= link_to post_favorites_path(@post.id),method: :post do %>
+          <i class="far fa-heart"></i>
+        <% end %>
       <% end %>
-    <% else %>
-      <%= link_to post_favorites_path(@post.id),method: :post do %>
-        <i class="far fa-heart"></i>
+      <% if @post.user_id === current_user.id %>
+        <%= link_to "削除",post_path(@post.id),method: :delete,class:"btn btn-danger btn-sm","data-confirm"=>"本当に削除していいですか？" %>
       <% end %>
-    <% end %>
-    <% if @post.user_id === current_user.id %>
-      <%= link_to "削除",post_path(@post.id),method: :delete,class:"btn btn-danger btn-sm","data-confirm"=>"本当に削除していいですか？" %>
-    <% end %>
+    </div>
   </div>
-</div>
-<div class="comment">
-  
+  <div class="comment">
+    <h2>コメント一覧</h2>
+    <div class="comment-index">
+      <% @post.comments.each do |comment| %>
+        <div class="mb-3">
+          <%= comment.user.name %><%= comment.created_at.strftime("%Y/%m/%d") %><br>
+          <%= comment.comment %>
+        </div>
+      <% end %>
+    </div>
+    <div class="new-comment">
+      <%= form_with model:@comment,url:post_comments_path(@post.id),local:true do |f| %>
+        <%= f.text_field:comment,placeholder:"コメント入力",class:"form-controll" %>
+        <%= f.submit "コメントする",class:"btn btn-success" %>
+      <% end %>
+    </div>
+  </div>
 </div>
