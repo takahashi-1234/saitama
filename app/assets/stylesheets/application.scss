@@ -82,11 +82,15 @@ body {
 }
 .post{
     width:68%;
-    padding:20px;
 }
+
 .post-index{
+    display:none;
+}
+.box-show{
   display:flex;
   flex-wrap:wrap;
+  padding:20px;
 }
 .heading{
   padding:10px;
@@ -129,3 +133,19 @@ body {
 .new-comment{
     margin-top:20px;
 }
+.tab{
+    display:flex;
+}
+.tab-bar{
+    height:40px;
+    padding:10px 20px;
+    border-top:solid 1px gray;
+    border-left:solid 0.8px gray;
+    border-right:solid 0.8px gray;
+    border-radius:2px;
+}
+.tab-active{
+    background-color:red;
+    font-weight:bold;
+}
+

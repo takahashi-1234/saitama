@@ -3,6 +3,8 @@
     <%= form_with model:@post,local:true do |f| %>
       <%= f.label:title %>
       <%= f.text_field:title,placeholder:"菓子屋横丁",class:"form-control" %>
+      <%= f.label:category %>
+      <%= f.select:kind,[["グルメ","グルメ"],["観光","観光"],["ファッション","ファッション"],["体験","体験"]],{},class:"form-control" %>
       <%= f.label:body %>
       <%= f.text_field:body,placeholder:"風情のある街並みで散策",class:"form-control" %>
       <%= f.label:image %>
@@ -10,29 +12,28 @@
       <%= f.submit "投稿",class:"btn btn-primary mt-3" %>
     <% end %>
   </div>
-  <div class="post bg-light">
-    <h2 class="heading">投稿の一覧</h2>
-    <div class="post-index">
-      <% if @posts.present? %>
-        <% @posts.each do |post| %>
-          <div class="card" style="width: 200px;">
-            <%= attachment_image_tag post,:image,fallback:"noimage.png",size:'200x250',class:"bd-placeholder-img card-img-top w-100" %>
-            <div class="card-body">
-              <h5 class="card-title"><%= post.title %></h5>
-              <p class="card-text"><%= post.body %></p>
-              <div class="fav-btn-<%= post.id %>">
-                <%= render "favorites/fav",post:post %>
-              </div>
-              <%= link_to "詳細",post_path(post.id),class:"btn btn-primary btn-sm" %>
-              <% if post.user_id === current_user.id %>
-                <%= link_to "削除",post_path(post.id),method: :delete,class:"btn btn-danger btn-sm","data-confirm"=>"本当に削除していいですか？" %>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-      <% else %>
-        <p>投稿はまだありません</p>
-      <% end %>
+  <div class="post">
+    <div class="tab">
+      <div class="tab-bar tab-active">すべて</div>
+      <div class="tab-bar">グルメ</div>
+      <div class="tab-bar">観光</div>
+      <div class="tab-bar">ファッション</div>
+      <div class="tab-bar">体験</div>
+    </div>
+    <div class="post-index box-show bg-light">
+      <%= render "posts/index",posts:@posts %>
+    </div>
+    <div class="post-index bg-light">
+      <%= render "posts/index",posts:@gourmand_posts %>
+    </div>
+    <div class="post-index bg-light">
+      <%= render "posts/index",posts:@travel_posts %>
+    </div>
+    <div class="post-index bg-light">
+      <%= render "posts/index",posts:@fashion_posts %>
+    </div>
+    <div class="post-index bg-light">
+      <%= render "posts/index",posts:@experience_posts %>
     </div>
   </div>
 </div>

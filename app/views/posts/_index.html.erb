@@ -1,0 +1,21 @@
+<% if posts.present? %>
+    <% posts.each do |post| %>
+      <div class="card" style="width: 200px;">
+        <%= attachment_image_tag post,:image,fallback:"noimage.png",size:'200x250',class:"bd-placeholder-img card-img-top w-100" %>
+        <div class="card-body">
+          <h5 class="card-title"><%= post.title %></h5>
+          <p class="card-text"><%= post.kind %></p>
+          <p class="card-text"><%= post.body %></p>
+          <div class="fav-btn-<%= post.id %>">
+            <%= render "favorites/fav",post:post %>
+          </div>
+          <%= link_to "詳細",post_path(post.id),class:"btn btn-primary btn-sm" %>
+          <% if post.user_id === current_user.id %>
+            <%= link_to "削除",post_path(post.id),method: :delete,class:"btn btn-danger btn-sm","data-confirm"=>"本当に削除していいですか？" %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p>投稿はまだありません</p>
+  <% end %>

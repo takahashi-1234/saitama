@@ -2,6 +2,10 @@ class PostsController < ApplicationController
   def index
     @post=Post.new
     @posts=Post.all
+    @gourmand_posts=Post.where(kind:"グルメ")
+    @fashion_posts=Post.where(kind:"ファッション")
+    @travel_posts=Post.where(kind:"観光")
+    @experience_posts=Post.where(kind:"体験")
   end
   def create
     post=current_user.posts.new(post_params)
@@ -20,6 +24,6 @@ class PostsController < ApplicationController
   end
   private
   def post_params
-    params.require(:post).permit(:title,:body,:image)
+    params.require(:post).permit(:title,:body,:image,:kind)
   end
 end
