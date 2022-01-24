@@ -149,3 +149,32 @@ body {
     font-weight:bold;
 }
 
+#wrapper{
+    display:flex;
+    align-items:stretch;
+}
+
+#sidebar.close{
+    margin-left:-300px;
+}
+
+#sidebar{
+    width:300px;
+    padding:20px;
+    transition:all 0.8s;
+}
+#main{
+    width:100%;
+}
+
+.open{
+    transform: rotate(-180deg);
+}
+
+.navbar{
+    display:flex;
+}
+.saitama-icon{
+    margin:0 auto;
+    width:80px;
+}

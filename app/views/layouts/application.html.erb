@@ -11,13 +11,23 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <nav>
-    <%= image_tag 'saitama.png',:size=>'120x80' %>
-    <%= link_to "ログイン",new_user_session_path %>
-    <%= link_to "ログアウト",destroy_user_session_path %>
-  </nav>
-
-  <body>
-    <%= yield %>
-  </body>
+  <div id="wrapper">
+    <div id="sidebar" class="close">
+      
+    </div>
+    <div id="main">
+      <nav class="navbar bg-light shadow-sm">
+        <button type="button" id="sidebarCollapse" class="btn">
+          <i class="fa fa-angle-double-right fa-2x sidebar-icon"></i>
+        </button>
+        <span class="saitama-icon"><%= image_tag 'saitama.png',:size=>'120x80' %></span>
+        <%= link_to "ログイン",new_user_session_path %>
+        <%= link_to "ログアウト",destroy_user_session_path %>
+      </nav>
+    
+      <body>
+        <%= yield %>
+      </body>
+    </div>
+  </div>
 </html>

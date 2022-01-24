@@ -27,3 +27,10 @@ $(function(){
         $('.post-index').eq(index).addClass('box-show');
     });
 });
+
+$(function(){
+    $('#sidebarCollapse').click(function(){
+        $('#sidebar').toggleClass('close');
+        $('.sidebar-icon').toggleClass('open');
+    });
+});
