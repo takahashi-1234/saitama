@@ -20,7 +20,7 @@
         <button type="button" id="sidebarCollapse" class="btn">
           <i class="fa fa-angle-double-right fa-2x sidebar-icon"></i>
         </button>
-        <span class="saitama-icon"><%= image_tag 'saitama.png',:size=>'140x80' %></span>
+        <%= link_to root_path, class:"saitama-icon" do %><%= image_tag 'saitama.png',:size=>'140x80' %><% end %>
         <%= link_to "ログイン",new_user_session_path %>
         <%= link_to "ログアウト",destroy_user_session_path %>
       </nav>

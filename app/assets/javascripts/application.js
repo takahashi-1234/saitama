@@ -18,7 +18,7 @@
 //= require turbolinks
 //= require_tree .
 
-$(function(){
+$(document).on('turbolinks:load',function(){
     $('.tab-bar').click(function(){
         $('.tab-active').removeClass('tab-active');
         $(this).addClass('tab-active');
@@ -28,7 +28,7 @@ $(function(){
     });
 });
 
-$(function(){
+$(document).on('turbolinks:load',function(){
     $('#sidebarCollapse').click(function(){
         $('#sidebar').toggleClass('close');
         $('.sidebar-icon').toggleClass('open');

@@ -2,7 +2,14 @@
   <div class="card" style="width: 500px;">
     <%= attachment_image_tag @post,:image,fallback:"noimage.png",size:'400x550',class:"bd-placeholder-img card-img-top w-100" %>
     <div class="card-body">
-      <h5 class="card-title"><%= @post.title %></h5>
+      <h5 class="card-title">
+        <div class="tag-title">
+          <div><%= @post.title %></div>
+          <% @post.tags.each do |tag| %>
+          　<div class="tag_name" %><%= tag.tag_name %></div>
+          <% end %>
+        </div>
+      </h5>
       <p><%= @post.body %></p>
       <% if @post.favorite_by(current_user) %>
         <%= link_to post_favorites_path(@post.id),method: :delete do %>

@@ -9,8 +9,13 @@ class PostsController < ApplicationController
   end
   def create
     post=current_user.posts.new(post_params)
-    post.save
-    redirect_back(fallback_location:root_path)
+    tag_list=params[:post][:tag_name].split("、")
+    if post.save
+      post.save_tag(tag_list)
+      redirect_back(fallback_location:root_path)
+    else
+      redirect_back(fallback_location:root_path)
+    end    
   end
   def destroy
     post=Post.find(params[:id])
