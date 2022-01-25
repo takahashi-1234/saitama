@@ -1,10 +1,10 @@
 class CommentsController < ApplicationController
   def create
-    post=Post.find(params[:post_id])
+    @post=Post.find(params[:post_id])
+    @comment=Comment.new
     comment=current_user.comments.new(comment_params)
-    comment.post_id=post.id
+    comment.post_id=@post.id
     comment.save
-    redirect_back(fallback_location:root_path)
   end
   def destroy
   end

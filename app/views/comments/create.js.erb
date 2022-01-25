@@ -1,0 +1,2 @@
+$(".comment-index").html("<%= j(render "comments/index", comments: @post.comments) %>");
+$(".new-comment").html("<%= j(render "comments/new",comment: @comment, post: @post) %>" );
