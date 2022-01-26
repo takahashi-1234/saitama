@@ -13,7 +13,11 @@
   </head>
   <div id="wrapper">
     <div id="sidebar" class="close bg-light">
-      
+      <div class="tag-title">
+        <% @tags.each do |tag| %>
+          <div class="tag_name"><%= tag.tag_name %><%= tag.posts.count %></div>
+        <% end %>
+      </div>
     </div>
     <div id="main">
       <nav class="navbar bg-light shadow-sm">

@@ -19,8 +19,13 @@ class PostsController < ApplicationController
   end
   def destroy
     post=Post.find(params[:id])
+    post.tags.each do |tag|
+      if TagMap.where(tag_id:tag.id).count==1
+        tag.destroy
+      end
+    end
     post.destroy
-    redirect_back(fallback_location:root_path)
+    redirect_to posts_path
   end
   
   def show

@@ -15,7 +15,7 @@ class Post < ApplicationRecord
     new_tags=sent_tags-current_tags
     
     old_tags.each do |old|
-      old.delete if old.posts.present?
+      self.tags.delete Tag.find_by(tag_name:old)
     end
     new_tags.each do |new|
       new_review_tag=Tag.find_or_initialize_by(tag_name:new)
