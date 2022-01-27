@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action:tag_list
   def index
     @post=Post.new
     @posts=Post.all
@@ -6,6 +7,7 @@ class PostsController < ApplicationController
     @fashion_posts=Post.where(kind:"ファッション")
     @travel_posts=Post.where(kind:"観光")
     @experience_posts=Post.where(kind:"体験")
+
   end
   def create
     post=current_user.posts.new(post_params)
@@ -35,5 +37,8 @@ class PostsController < ApplicationController
   private
   def post_params
     params.require(:post).permit(:title,:body,:image,:kind)
+  end
+  def tag_list
+    @tags = Tag.order(created_at: :desc).page(params[:page])
   end
 end

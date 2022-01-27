@@ -13,10 +13,14 @@
   </head>
   <div id="wrapper">
     <div id="sidebar" class="close bg-light">
-      <div class="tag-title">
-        <% @tags.each do |tag| %>
-          <div class="tag_name"><%= tag.tag_name %><%= tag.posts.count %></div>
-        <% end %>
+      <div class="tag_lists">
+        <h2>タグ一覧</h2>
+        <div class="tag-title">
+          <%= render "posts/tag_list",tags:@tags %>
+        </div>
+        <button class="more">
+          <%= link_to_next_page @tags,"もっと見る",remote:true,id:"view_more" %>
+        </button>
       </div>
     </div>
     <div id="main">

@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action:tag_list
+
   before_action:configure_permitted_parameters,if: :devise_controller?
   
   protected
@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up,keys:[:name])
   end
   def tag_list
-    @tags=Tag.all
+    @tags = Tag.order(created_at: :desc).page(params[:page])
   end
 
 end
