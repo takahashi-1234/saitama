@@ -1,5 +1,5 @@
 <% tags.each do |tag| %>
   <div class="tag_name">
-    <%= tag.tag_name %> <%= tag.posts.count %>
+    <%= link_to tag_path(tag.id) do %><%= tag.tag_name %> <%= tag.posts.count %><% end %>
   </div>
 <% end %>

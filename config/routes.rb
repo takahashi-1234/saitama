@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resource:favorites,only:[:create,:destroy]
     resource:comments,only:[:create,:destroy]
   end
+  resources:tags,only:[:show]
   root to:"homes#top"
   
 end
